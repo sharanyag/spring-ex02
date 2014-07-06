@@ -14,6 +14,7 @@ public class LinkController {
 
 	@RequestMapping(value="/index")
 	public ModelAndView indexPage() {
+//		return new ModelAndView("strategy-list");
 		return new ModelAndView("home");
 	}
 

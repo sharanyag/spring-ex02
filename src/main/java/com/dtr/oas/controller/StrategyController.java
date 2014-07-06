@@ -24,28 +24,39 @@ public class StrategyController {
 	public ModelAndView addStrategyPage() {
 		ModelAndView modelAndView = new ModelAndView("strategy-add");
 		modelAndView.addObject("strategy", new Strategy());
+		List<Strategy> strategies = strategyService.getStrategies();
+		modelAndView.addObject("strategies", strategies);
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public ModelAndView addingStrategy(@ModelAttribute Strategy strategy) {
-		
-		ModelAndView modelAndView = new ModelAndView("home");
+		ModelAndView modelAndView = new ModelAndView("strategy-add");
 		strategyService.addStrategy(strategy);
-		
 		String message = "Strategy was successfully added.";
 		modelAndView.addObject("message", message);
-		
+		List<Strategy> strategies = strategyService.getStrategies();
+		modelAndView.addObject("strategies", strategies);
 		return modelAndView;
+	}
+	
+	@RequestMapping(value="/")
+	public ModelAndView mainPage() {
+		return new ModelAndView("home");
+	}
+
+	@RequestMapping(value="/index")
+	public ModelAndView indexPage() {
+		return new ModelAndView("home");
 	}
 	
 	@RequestMapping(value="/list")
 	public ModelAndView listOfStrategies() {
 		ModelAndView modelAndView = new ModelAndView("strategy-list");
-		
 		List<Strategy> strategies = strategyService.getStrategies();
 		modelAndView.addObject("strategies", strategies);
-		
+		String message = "Strategy was successfully listed.";
+		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
 	
@@ -54,28 +65,33 @@ public class StrategyController {
 		ModelAndView modelAndView = new ModelAndView("strategy-edit");
 		Strategy strategy = strategyService.getStrategy(id);
 		modelAndView.addObject("strategy",strategy);
+		List<Strategy> strategies = strategyService.getStrategies();
+		modelAndView.addObject("strategies", strategies);
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
 	public ModelAndView edditingStrategy(@ModelAttribute Strategy strategy, @PathVariable Integer id) {
 		
-		ModelAndView modelAndView = new ModelAndView("home");
-		
+//		ModelAndView modelAndView = new ModelAndView("home");
+		ModelAndView modelAndView = new ModelAndView("strategy-edit");
 		strategyService.updateStrategy(strategy);
-		
 		String message = "Strategy was successfully edited.";
 		modelAndView.addObject("message", message);
-		
+		List<Strategy> strategies = strategyService.getStrategies();
+		modelAndView.addObject("strategies", strategies);
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
 	public ModelAndView deleteStrategy(@PathVariable Integer id) {
-		ModelAndView modelAndView = new ModelAndView("home");
+//		ModelAndView modelAndView = new ModelAndView("home");
+		ModelAndView modelAndView = new ModelAndView("strategy-list");
 		strategyService.deleteStrategy(id);
 		String message = "Strategy was successfully deleted.";
 		modelAndView.addObject("message", message);
+		List<Strategy> strategies = strategyService.getStrategies();
+		modelAndView.addObject("strategies", strategies);
 		return modelAndView;
 	}
 

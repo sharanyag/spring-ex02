@@ -9,11 +9,12 @@
 </head>
 <body>
 <h1>List of strategies</h1>
+${message}<br/>
 <p>Here you can see the list of the strategies, edit them, remove or update.</p>
 <table class="table table-striped" border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 <tr>
-<th width="10%">id</th><th width="15%">name</th><th width="10%">type</th><th width="10%">actions</th>
+<th width="10%">ID</th><th width="15%">Name</th><th width="10%">Type</th><th width="10%">Edit</th><th width="10%">Delete</th>
 </tr>
 </thead>
 <tbody>
@@ -23,7 +24,8 @@
 	<td>${strategy.name}</td>
 	<td>${strategy.type}</td>
 	<td>
-	<a href="${pageContext.request.contextPath}/strategy/edit/${strategy.id}.html">Edit</a><br/>
+	<a href="${pageContext.request.contextPath}/strategy/edit/${strategy.id}.html">Edit</a><br/></td>
+	<td>
 	<a href="${pageContext.request.contextPath}/strategy/delete/${strategy.id}.html">Delete</a><br/>
 	</td>
 </tr>
@@ -31,6 +33,7 @@
 </tbody>
 </table>
 
+<%-- <p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p> --%>
 <p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
 
 </body>
